@@ -123,6 +123,7 @@ int main()
     Node *head = NULL;
     while (1)
     {
+        cout << "Option-0: Insert many value" << endl;
         cout << "Option-1: Insert a value at tail" << endl;
         cout << "Option-2: Insert a value anywhere" << endl;
         cout << "Option-3: Print full Linked list" << endl;
@@ -130,7 +131,21 @@ int main()
         cout << "Option-5: Terminate" << endl;
         int opt;
         cin >> opt;
-        if (opt == 1)
+        if (opt == 0)
+        {
+            cout << "Insert a values separated by space : ";
+            int val;
+            while (true)
+            {
+                cin >> val;
+                if (val == -1)
+                {
+                    break;
+                }
+                insert_at_tail(head, val);
+            }
+        }
+        else if (opt == 1)
         {
             cout << "Insert a value : ";
             int val;
