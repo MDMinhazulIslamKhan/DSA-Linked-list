@@ -38,12 +38,16 @@ void delete_at_any_position(Node *&head, int position)
         Node *temp = head;
         for (int i = 1; i < position - 1; i++)
         {
-            if (temp->next == NULL || temp->next->next == NULL)
+            if (temp->next == NULL)
             {
                 cout << "There is only " << i + 1 << " elements in the list." << endl;
                 return;
             }
             temp = temp->next;
+        }
+        if (temp->next == NULL)
+        {
+            return;
         }
         Node *deletedNode = temp->next;
         temp->next = temp->next->next;
@@ -63,6 +67,7 @@ void insert_at_any_position(Node *&head, int position, int val)
     }
     else if (position == 0)
     {
+        // insert at head
         Node *newNode = new Node(val);
         newNode->next = head;
         head = newNode;
@@ -70,7 +75,6 @@ void insert_at_any_position(Node *&head, int position, int val)
     }
     else
     {
-        // insert at head
         Node *temp = head;
         for (int i = 1; i < position; i++)
         {
@@ -85,6 +89,32 @@ void insert_at_any_position(Node *&head, int position, int val)
         Node *newNode = new Node(val);
         newNode->next = temp->next;
         temp->next = newNode;
+    }
+}
+
+void print_reveres(Node *head)
+{
+    if (head == NULL)
+    {
+        return;
+    }
+    print_reveres(head->next);
+    cout << head->value << " ";
+}
+
+void insert_at_tail_N_complexity(Node *&head, Node *&tail, int val)
+{
+    Node *newNode = new Node(val);
+    if (head == NULL)
+    {
+        head = newNode;
+        tail = newNode;
+        return;
+    }
+    else
+    {
+        tail->next = newNode;
+        tail = newNode;
     }
 }
 
@@ -118,6 +148,18 @@ void print(Node *head)
     }
     cout << endl;
 }
+
+void size(Node *head)
+{
+    int i = 0;
+    while (head != NULL)
+    {
+        head = head->next;
+        i++;
+    }
+    cout << i << endl;
+}
+
 int main()
 {
     Node *head = NULL;
@@ -128,7 +170,9 @@ int main()
         cout << "Option-2: Insert a value anywhere" << endl;
         cout << "Option-3: Print full Linked list" << endl;
         cout << "Option-4: Delete a value anywhere" << endl;
-        cout << "Option-5: Terminate" << endl;
+        cout << "Option-5: Size of list" << endl;
+        cout << "Option-6: Terminate" << endl;
+
         int opt;
         cin >> opt;
         if (opt == 0)
@@ -174,6 +218,10 @@ int main()
             delete_at_any_position(head, pos);
         }
         else if (opt == 5)
+        {
+            size(head);
+        }
+        else if (opt == 6)
         {
             break;
         }
