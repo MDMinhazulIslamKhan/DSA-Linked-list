@@ -12,6 +12,27 @@ public:
         this->next = NULL;
     }
 };
+void sort_linked_list(Node *head)
+{
+    if (head == NULL)
+    {
+        return;
+    }
+
+    while (head->next != NULL)
+    {
+        Node *last = head->next;
+        while (last != NULL)
+        {
+            if (head->value > last->value)
+            {
+                swap(head->value, last->value);
+            }
+            last = last->next;
+        }
+        head = head->next;
+    }
+}
 
 void delete_at_any_position(Node *&head, int position)
 {
