@@ -89,7 +89,6 @@ void insert_at_any_position(Node *&head, int position, int val)
     else if (position == 0)
     {
         // insert at head
-        Node *newNode = new Node(val);
         newNode->next = head;
         head = newNode;
         return;
@@ -107,7 +106,6 @@ void insert_at_any_position(Node *&head, int position, int val)
 
             temp = temp->next;
         }
-        Node *newNode = new Node(val);
         newNode->next = temp->next;
         temp->next = newNode;
     }
