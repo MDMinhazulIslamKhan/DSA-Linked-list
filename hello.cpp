@@ -168,6 +168,18 @@ void print(Node *head)
     cout << endl;
 }
 
+void reverce(Node *&head, Node *cur)
+{
+    if (cur->next == NULL)
+    {
+        head = cur;
+        return;
+    }
+    reverce(head, cur->next);
+    cur->next->next = cur;
+    cur->next = NULL;
+}
+
 void size(Node *head)
 {
     int i = 0;
