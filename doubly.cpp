@@ -171,6 +171,17 @@ void delete_at_any_position(DoublyNode *&head, DoublyNode *&tail, int position)
     }
 }
 
+void reverse(DoublyNode *head, DoublyNode *tail)
+{
+    int n = size(head);
+    for (int i = 0; i < n / 2; i++)
+    {
+        swap(tail->value, head->value);
+        head = head->next;
+        tail = tail->prev;
+    }
+}
+
 int main()
 {
 

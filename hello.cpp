@@ -111,13 +111,13 @@ void insert_at_any_position(Node *&head, int position, int val)
     }
 }
 
-void print_reveres(Node *head)
+void print_reverse(Node *head)
 {
     if (head == NULL)
     {
         return;
     }
-    print_reveres(head->next);
+    print_reverse(head->next);
     cout << head->value << " ";
 }
 
@@ -168,14 +168,14 @@ void print(Node *head)
     cout << endl;
 }
 
-void reverce(Node *&head, Node *cur)
+void reverse(Node *&head, Node *cur)
 {
     if (cur->next == NULL)
     {
         head = cur;
         return;
     }
-    reverce(head, cur->next);
+    reverse(head, cur->next);
     cur->next->next = cur;
     cur->next = NULL;
 }
