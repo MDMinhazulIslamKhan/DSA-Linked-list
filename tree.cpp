@@ -173,6 +173,20 @@ void printLeaf(Node *root)
     printLeaf(root->left);
     printLeaf(root->right);
 }
+int sumOfTree(Node *root)
+{
+    if (!root)
+    {
+        return 0;
+    }
+    if (!root->left && !root->right)
+    {
+        return 0;
+    }
+    int l = sumOfTree(root->left);
+    int r = sumOfTree(root->right);
+    return root->val + l + r;
+}
 int main()
 {
     Node *root = inputTree();
