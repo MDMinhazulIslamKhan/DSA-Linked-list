@@ -65,6 +65,33 @@ void levelOrder(Node *root)
             q.push(f->right);
     }
 }
+void printSingleLevel(Node *root, int line)
+{
+    if (!root)
+    {
+        return;
+    }
+    if (line == 0)
+    {
+        cout << root->val;
+        return;
+    }
+    queue<pair<Node *, int>> q;
+    q.push({root, 0});
+    while (!q.empty())
+    {
+        Node *f = q.front().first;
+        int currentLevel = q.front().second;
+        if (currentLevel == line)
+            cout
+                << f->val << " ";
+        q.pop();
+        if (f->left)
+            q.push({f->left, currentLevel + 1});
+        if (f->right)
+            q.push({f->right, currentLevel + 1});
+    }
+}
 Node *inputTree()
 {
     int left, right;
