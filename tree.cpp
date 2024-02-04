@@ -2,20 +2,20 @@
 
 using namespace std;
 
-class Node
+class TreeNode
 {
 public:
     int val;
-    Node *left;
-    Node *right;
-    Node(int val)
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int val)
     {
         this->val = val;
         this->left = NULL;
         this->right = NULL;
     }
 };
-void preOrderTraverse(Node *root)
+void preOrderTraverse(TreeNode *root)
 {
     if (!root)
     {
@@ -25,7 +25,7 @@ void preOrderTraverse(Node *root)
     preOrderTraverse(root->left);
     preOrderTraverse(root->right);
 }
-void postOrderTraverse(Node *root)
+void postOrderTraverse(TreeNode *root)
 {
     if (!root)
     {
@@ -35,7 +35,7 @@ void postOrderTraverse(Node *root)
     postOrderTraverse(root->right);
     cout << root->val << " ";
 }
-void inOrderTraverse(Node *root)
+void inOrderTraverse(TreeNode *root)
 {
     if (root == NULL)
     {
@@ -45,18 +45,18 @@ void inOrderTraverse(Node *root)
     cout << root->val << " ";
     inOrderTraverse(root->right);
 }
-void levelOrder(Node *root)
+void levelOrder(TreeNode *root)
 {
     if (!root)
     {
         cout << "Empty";
         return;
     }
-    queue<Node *> q;
+    queue<TreeNode *> q;
     q.push(root);
     while (!q.empty())
     {
-        Node *f = q.front();
+        TreeNode *f = q.front();
         q.pop();
         cout << f->val << " ";
         if (f->left)
@@ -65,7 +65,7 @@ void levelOrder(Node *root)
             q.push(f->right);
     }
 }
-void printSingleLevel(Node *root, int line)
+void printSingleLevel(TreeNode *root, int line)
 {
     if (!root)
     {
@@ -76,11 +76,11 @@ void printSingleLevel(Node *root, int line)
         cout << root->val;
         return;
     }
-    queue<pair<Node *, int>> q;
+    queue<pair<TreeNode *, int>> q;
     q.push({root, 0});
     while (!q.empty())
     {
-        Node *f = q.front().first;
+        TreeNode *f = q.front().first;
         int currentLevel = q.front().second;
         if (currentLevel == line)
             cout
@@ -92,22 +92,22 @@ void printSingleLevel(Node *root, int line)
             q.push({f->right, currentLevel + 1});
     }
 }
-Node *inputTree()
+TreeNode *inputTree()
 {
     int left, right;
     cin >> left;
 
-    Node *root;
+    TreeNode *root;
     if (left == -1)
         root = NULL;
     else
-        root = new Node(left);
-    queue<Node *> q;
+        root = new TreeNode(left);
+    queue<TreeNode *> q;
     if (root)
         q.push(root);
     while (cin >> left >> right)
     {
-        Node *f = q.front();
+        TreeNode *f = q.front();
         q.pop();
         if (left == -1)
         {
@@ -115,7 +115,7 @@ Node *inputTree()
         }
         else
         {
-            Node *leftNode = new Node(left);
+            TreeNode *leftNode = new TreeNode(left);
             f->left = leftNode;
             q.push(leftNode);
         }
@@ -125,14 +125,14 @@ Node *inputTree()
         }
         else
         {
-            Node *rightNode = new Node(right);
+            TreeNode *rightNode = new TreeNode(right);
             f->right = rightNode;
             q.push(rightNode);
         }
     }
     return root;
 }
-int countTree(Node *root)
+int countTree(TreeNode *root)
 {
     if (!root)
     {
@@ -142,7 +142,7 @@ int countTree(Node *root)
     int r = countTree(root->right);
     return l + r + 1;
 }
-int countLeaf(Node *root)
+int countLeaf(TreeNode *root)
 {
     if (!root)
     {
@@ -157,7 +157,7 @@ int countLeaf(Node *root)
     int r = countLeaf(root->right);
     return l + r;
 }
-int myHightOfTree(Node *root, int depth)
+int myHightOfTree(TreeNode *root, int depth)
 {
     if (!root)
     {
@@ -175,7 +175,7 @@ int myHightOfTree(Node *root, int depth)
     else
         return r;
 }
-int hightOfTree(Node *root)
+int hightOfTree(TreeNode *root)
 {
     if (!root)
     {
@@ -187,7 +187,7 @@ int hightOfTree(Node *root)
 
     return max(l, r) + 1;
 }
-void printLeaf(Node *root)
+void printLeaf(TreeNode *root)
 {
     if (!root)
     {
@@ -200,7 +200,7 @@ void printLeaf(Node *root)
     printLeaf(root->left);
     printLeaf(root->right);
 }
-int sumOfTree(Node *root)
+int sumOfTree(TreeNode *root)
 {
     if (!root)
     {
@@ -216,7 +216,7 @@ int sumOfTree(Node *root)
 }
 int main()
 {
-    Node *root = inputTree();
+    TreeNode *root = inputTree();
     printLeaf(root);
     return 0;
 }

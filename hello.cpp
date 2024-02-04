@@ -1,18 +1,18 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-class Node
+class TreeNode
 {
 public:
     int value;
-    Node *next;
-    Node(int value)
+    TreeNode *next;
+    TreeNode(int value)
     {
         this->value = value;
         this->next = NULL;
     }
 };
-void sort_linked_list(Node *head)
+void sort_linked_list(TreeNode *head)
 {
     if (head == NULL)
     {
@@ -21,7 +21,7 @@ void sort_linked_list(Node *head)
 
     while (head->next != NULL)
     {
-        Node *last = head->next;
+        TreeNode *last = head->next;
         while (last != NULL)
         {
             if (head->value > last->value)
@@ -34,7 +34,7 @@ void sort_linked_list(Node *head)
     }
 }
 
-void delete_at_any_position(Node *&head, int position)
+void delete_at_any_position(TreeNode *&head, int position)
 {
     if (position < 1)
     {
@@ -44,7 +44,7 @@ void delete_at_any_position(Node *&head, int position)
     else if (position == 1)
     {
         // delete head
-        Node *deletedNode = head;
+        TreeNode *deletedNode = head;
         if (head == NULL)
         {
             cout << "There is no value in the list." << endl;
@@ -56,7 +56,7 @@ void delete_at_any_position(Node *&head, int position)
     }
     else
     {
-        Node *temp = head;
+        TreeNode *temp = head;
         for (int i = 1; i < position - 1; i++)
         {
             if (temp->next == NULL)
@@ -70,16 +70,16 @@ void delete_at_any_position(Node *&head, int position)
         {
             return;
         }
-        Node *deletedNode = temp->next;
+        TreeNode *deletedNode = temp->next;
         temp->next = temp->next->next;
 
         delete deletedNode;
     }
 }
 
-void insert_at_any_position(Node *&head, int position, int val)
+void insert_at_any_position(TreeNode *&head, int position, int val)
 {
-    Node *newNode = new Node(val);
+    TreeNode *newNode = new TreeNode(val);
     if (head == NULL)
     {
         cout << "There is no element in the list. " << val << " inserted at start." << endl;
@@ -95,7 +95,7 @@ void insert_at_any_position(Node *&head, int position, int val)
     }
     else
     {
-        Node *temp = head;
+        TreeNode *temp = head;
         for (int i = 1; i < position; i++)
         {
             if (temp->next == NULL)
@@ -111,7 +111,7 @@ void insert_at_any_position(Node *&head, int position, int val)
     }
 }
 
-void print_reverse(Node *head)
+void print_reverse(TreeNode *head)
 {
     if (head == NULL)
     {
@@ -121,9 +121,9 @@ void print_reverse(Node *head)
     cout << head->value << " ";
 }
 
-void insert_at_tail_N_complexity(Node *&head, Node *&tail, int val)
+void insert_at_tail_N_complexity(TreeNode *&head, TreeNode *&tail, int val)
 {
-    Node *newNode = new Node(val);
+    TreeNode *newNode = new TreeNode(val);
     if (head == NULL)
     {
         head = newNode;
@@ -137,29 +137,29 @@ void insert_at_tail_N_complexity(Node *&head, Node *&tail, int val)
     }
 }
 
-void insert_at_tail(Node *&head, int val)
+void insert_at_tail(TreeNode *&head, int val)
 {
     if (head == NULL)
     {
-        Node *newNode = new Node(val);
+        TreeNode *newNode = new TreeNode(val);
         head = newNode;
         return;
     }
     else
     {
-        Node *temp = head;
+        TreeNode *temp = head;
         while (temp->next != NULL)
         {
             temp = temp->next;
         }
-        Node *newNode = new Node(val);
+        TreeNode *newNode = new TreeNode(val);
         temp->next = newNode;
     }
 }
 
-void print(Node *head)
+void print(TreeNode *head)
 {
-    Node *temp = head;
+    TreeNode *temp = head;
     while (temp != NULL)
     {
         cout << temp->value << " ";
@@ -168,7 +168,7 @@ void print(Node *head)
     cout << endl;
 }
 
-void reverse(Node *&head, Node *cur)
+void reverse(TreeNode *&head, TreeNode *cur)
 {
     if (cur->next == NULL)
     {
@@ -180,7 +180,7 @@ void reverse(Node *&head, Node *cur)
     cur->next = NULL;
 }
 
-void size(Node *head)
+void size(TreeNode *head)
 {
     int i = 0;
     while (head != NULL)
@@ -193,7 +193,7 @@ void size(Node *head)
 
 int main()
 {
-    Node *head = NULL;
+    TreeNode *head = NULL;
     while (1)
     {
         cout << "Option-0: Insert many value" << endl;
